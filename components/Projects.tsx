@@ -1,12 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { useRef, useState } from 'react'
+import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion'
 
 const projects = [
   {
     title: 'My Doctor Shop – Healthcare E-commerce',
-    description: 'A healthcare-focused ecommerce website enabling users to browse and purchase medical products through a simple user-friendly interface. Built with Next.js, React.js, and Tailwind CSS.',
+    description:
+      'A healthcare-focused ecommerce website enabling users to browse and purchase medical products through a simple user-friendly interface. Built with Next.js, React.js, and Tailwind CSS.',
     tags: ['Next.js', 'React.js', 'E-commerce', 'WooCommerce'],
     image: '/projects/mydoctorshop-1.webp',
     liveUrl: 'http://mydoctorshop.com/',
@@ -14,7 +15,8 @@ const projects = [
   },
   {
     title: 'Inventory Management Web Application',
-    description: 'A web-based inventory management system with barcode scanning to improve stock visibility, speed, and operational accuracy. Built with React.js and modern web technologies.',
+    description:
+      'A web-based inventory management system with barcode scanning to improve stock visibility, speed, and operational accuracy. Built with React.js and modern web technologies.',
     tags: ['React.js', 'Barcode Scanning', 'Web App', 'Inventory'],
     image: '/projects/inventory-1.webp',
     liveUrl: 'https://inventory-demo-test.netlify.app/scan',
@@ -22,7 +24,8 @@ const projects = [
   },
   {
     title: 'Benders Agency – Corporate Website',
-    description: 'A modern and responsive agency website focused on clean design, fast load times, and strong brand presentation. Built with Next.js for optimal performance.',
+    description:
+      'A modern and responsive agency website focused on clean design, fast load times, and strong brand presentation. Built with Next.js for optimal performance.',
     tags: ['Next.js', 'Corporate', 'UI/UX', 'Marketing'],
     image: '/projects/bendersagency-1.webp',
     liveUrl: 'https://www.bendersagency.com/',
@@ -30,7 +33,8 @@ const projects = [
   },
   {
     title: 'Valorant Agent Hub – Interactive Platform',
-    description: 'An interactive frontend platform delivering structured agent data with a smooth and responsive user experience. Features API integration and gaming-focused design.',
+    description:
+      'An interactive frontend platform delivering structured agent data with a smooth and responsive user experience. Features API integration and gaming-focused design.',
     tags: ['React.js', 'API Integration', 'Gaming', 'Interactive'],
     image: '/projects/valorantagenthub-1.webp',
     liveUrl: 'https://valorantagenthub.vercel.app/',
@@ -38,7 +42,8 @@ const projects = [
   },
   {
     title: 'MyGovTools – Utility Platform',
-    description: 'A public-facing tools platform with emphasis on usability, accessibility, and clear information architecture. Built for government services with React.js.',
+    description:
+      'A public-facing tools platform with emphasis on usability, accessibility, and clear information architecture. Built for government services with React.js.',
     tags: ['React.js', 'Accessibility', 'Public Sector', 'Tools'],
     image: '/projects/mygovtools-1.webp',
     liveUrl: 'https://www.mygovtools.org/',
@@ -46,7 +51,8 @@ const projects = [
   },
   {
     title: 'ERP System (Multi-Site Inventory & POS)',
-    description: 'Developed modules like POS, inventory, and user management using React.js and Node.js. Integrated dynamic APIs and ensured real-time data sync across multiple branches.',
+    description:
+      'Developed modules like POS, inventory, and user management using React.js and Node.js. Integrated dynamic APIs and ensured real-time data sync across multiple branches.',
     tags: ['React.js', 'Node.js', 'MongoDB', 'Real-time'],
     image: null,
     liveUrl: null,
@@ -54,7 +60,8 @@ const projects = [
   },
   {
     title: 'Resource Planner Tool',
-    description: 'Developed a resource planning tool used for managing human and project resources. Built drag-and-drop functionality to assign resources across multiple projects.',
+    description:
+      'Developed a resource planning tool used for managing human and project resources. Built drag-and-drop functionality to assign resources across multiple projects.',
     tags: ['React.js', 'Context API', 'Nest.js', 'Drag & Drop'],
     image: null,
     liveUrl: null,
@@ -62,7 +69,8 @@ const projects = [
   },
   {
     title: 'HRMS – Human Resource Management System',
-    description: 'Built full-stack employee management system using React.js and Node.js with JWT auth. Created dashboards, CRUD features, and role-based access control.',
+    description:
+      'Built full-stack employee management system using React.js and Node.js with JWT auth. Created dashboards, CRUD features, and role-based access control.',
     tags: ['React.js', 'Node.js', 'JWT', 'MongoDB'],
     image: null,
     liveUrl: null,
@@ -70,7 +78,129 @@ const projects = [
   },
 ]
 
+// ─── Variants ─────────────────────────────────────────────────────────────────
+
+const containerVariant = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+}
+
+const itemVariant = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+}
+
+// ─── ProjectCard with 3D tilt ─────────────────────────────────────────────────
+
+function ProjectCard({
+  project,
+  shouldReduce,
+}: {
+  project: (typeof projects)[0]
+  shouldReduce: boolean | null
+}) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const [imageLoaded, setImageLoaded] = useState(false)
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8])
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current || shouldReduce) return
+    const rect = cardRef.current.getBoundingClientRect()
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5)
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      variants={itemVariant}
+      style={shouldReduce ? {} : { rotateX, rotateY, transformPerspective: 800 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="bg-[#13131f] rounded-xl overflow-hidden border border-purple-600/20 hover:border-purple-600/50 transition-colors group will-change-transform"
+    >
+      {/* Image */}
+      <div className="relative h-48 bg-gradient-to-br from-purple-600/20 to-purple-400/20 overflow-hidden">
+        {project.image ? (
+          <>
+            {!imageLoaded && (
+              <div className="absolute inset-0 shimmer-bg" aria-hidden="true" />
+            )}
+            <img
+              src={project.image}
+              alt={project.title}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={() => setImageLoaded(true)}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#13131f] to-transparent opacity-40" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-6xl opacity-20">💻</div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#13131f] to-transparent opacity-60" />
+          </>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-400 transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 text-sm mb-4 line-clamp-3">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag, i) => (
+            <motion.span
+              key={i}
+              whileHover={shouldReduce ? {} : { scale: 1.08 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              className="bg-purple-600/20 text-purple-300 px-2 py-1 rounded text-xs cursor-default"
+            >
+              {tag}
+            </motion.span>
+          ))}
+        </div>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm transition-colors"
+          >
+            <span>View Live Site</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+
 export default function Projects() {
+  const shouldReduce = useReducedMotion()
+
   return (
     <section id="projects" className="py-20 bg-[#10101a]">
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
@@ -87,72 +217,17 @@ export default function Projects() {
             A showcase of my recent work and contributions
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            variants={containerVariant}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-[#13131f] rounded-xl overflow-hidden border border-purple-600/20 hover:border-purple-600/40 transition-all group"
-              >
-                {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-purple-600/20 to-purple-400/20 overflow-hidden">
-                  {project.image ? (
-                    <>
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#13131f] to-transparent opacity-40"></div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-6xl opacity-20">💻</div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#13131f] to-transparent opacity-60"></div>
-                    </>
-                  )}
-                </div>
-
-                {/* Project Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="bg-purple-600/20 text-purple-300 px-2 py-1 rounded text-xs"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  {project.liveUrl && (
-                    <a 
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm transition-colors"
-                    >
-                      <span>View Live Site</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </motion.div>
+              <ProjectCard key={index} project={project} shouldReduce={shouldReduce} />
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

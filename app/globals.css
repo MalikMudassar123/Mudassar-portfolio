@@ -32,17 +32,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Loading Animation */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* Gradient Text */
+/* === GRADIENT TEXT === */
 .gradient-text {
   background: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #6366f1 100%);
   -webkit-background-clip: text;
@@ -50,7 +40,7 @@ html {
   background-clip: text;
 }
 
-/* Custom Scrollbar */
+/* === CUSTOM SCROLLBAR === */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -66,4 +56,69 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-purple-light);
+}
+
+/* === ANIMATIONS === */
+
+/* Loading bounce (LoadingScreen) */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Image shimmer placeholder */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.05) 25%,
+    rgba(124, 58, 237, 0.18) 37%,
+    rgba(124, 58, 237, 0.05) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease infinite;
+}
+
+/* Background beams — travelling stroke */
+@keyframes beamTravel {
+  0%   { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: -1000; }
+}
+
+.beam-animate {
+  animation: beamTravel linear infinite;
+}
+
+/* Orbiting tech icons (desktop only) */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+@media (min-width: 1024px) {
+  .orbit-icon {
+    animation: orbit linear infinite;
+  }
+}
+
+/* Hide OS cursor when CustomCursor is active */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Slow spin animation for hero image border */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }

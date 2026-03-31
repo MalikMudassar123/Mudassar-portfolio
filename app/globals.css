@@ -113,12 +113,13 @@ html {
   }
 }
 
-/* Slow spin animation for hero image border */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Hero scroll line pulse */
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+  50%       { opacity: 1;   transform: scaleY(1); }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
+.scroll-line {
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+  transform-origin: top;
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -13,177 +13,232 @@ const ParticlesCanvas = dynamic(
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
-const contentStagger = {
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 1.6, ease: 'easeOut' } },
+}
+
+const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.5 } },
 }
 
-const lineReveal = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-}
+// ─── Ghost text shared style ───────────────────────────────────────────────────
 
-const charStagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
-}
-
-const charReveal = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-}
-
-// ─── Typewriter name ───────────────────────────────────────────────────────────
-
-function TypewriterName({ shouldReduce }: { shouldReduce: boolean | null }) {
-  if (shouldReduce) {
-    return (
-      <>Mudassar <span className="gradient-text">Zafar</span></>
-    )
-  }
-
-  const firstName = 'Mudassar'.split('')
-  const lastName = 'Zafar'.split('')
-
-  return (
-    <>
-      <motion.span
-        variants={charStagger}
-        initial="hidden"
-        animate="show"
-        className="inline-flex"
-        aria-hidden="true"
-      >
-        {firstName.map((char, i) => (
-          <motion.span key={i} variants={charReveal}>{char}</motion.span>
-        ))}
-      </motion.span>
-
-      <span className="inline-block w-4" aria-hidden="true" />
-
-      <motion.span
-        variants={charStagger}
-        initial="hidden"
-        animate="show"
-        className="inline-flex text-purple-400"
-        aria-hidden="true"
-      >
-        {lastName.map((char, i) => (
-          <motion.span key={i} variants={charReveal}>{char}</motion.span>
-        ))}
-      </motion.span>
-    </>
-  )
+const ghostStyle: React.CSSProperties = {
+  fontWeight: 900,
+  lineHeight: 0.85,
+  letterSpacing: '-0.04em',
+  whiteSpace: 'nowrap',
+  userSelect: 'none',
+  color: 'rgba(255,255,255,0.04)',
+  WebkitTextStroke: '1.5px rgba(255,255,255,0.18)',
 }
 
 // ─── Main component ────────────────────────────────────────────────────────────
 
 export default function Hero() {
-  const shouldReduce = useReducedMotion()
-
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="flex flex-col items-center relative overflow-hidden pt-24 pb-14 md:h-screen md:justify-center md:pt-16 md:pb-0"
       aria-label="Hero"
     >
-      {/* Spotlight cursor glow */}
+      {/* Cursor spotlight */}
       <Spotlight />
 
-      {/* Three.js particles — lazy, ssr:false */}
+      {/* Particles */}
       <ParticlesCanvas />
 
-      {/* Enhanced background effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-600/5 to-pink-600/5 rounded-full blur-3xl" />
-      </div>
+      {/* Ambient center glow */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 65% 50% at 50% 42%, rgba(124,58,237,0.14) 0%, transparent 68%)',
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Left: text */}
-        <motion.div variants={contentStagger} initial="hidden" animate="show">
-          <motion.p variants={lineReveal} className="text-purple-400 text-lg mb-4 font-medium">
-            Hi, I am
-          </motion.p>
+      {/* Grain texture */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          opacity: 0.028,
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundRepeat: 'repeat',
+        }}
+        aria-hidden="true"
+      />
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <TypewriterName shouldReduce={shouldReduce} />
-          </h1>
+      {/* ── Ghost name — full-section background layer ── */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        animate="show"
+        className="absolute inset-0 z-[1] flex flex-col items-center justify-center gap-1 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <span style={{ ...ghostStyle, fontSize: 'clamp(60px, 14vw, 190px)' }}>
+          MUDASSAR
+        </span>
+        <span style={{ ...ghostStyle, fontSize: 'clamp(95px, 22vw, 300px)' }}>
+          ZAFAR
+        </span>
+      </motion.div>
 
-          <motion.h2 
-            variants={lineReveal} 
-            className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent"
+      {/* ── Foreground content ── */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl mx-auto">
+
+        {/* Profile image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.0, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mb-4 md:mb-6"
+        >
+          {/* Ambient halo */}
+          <div
+            className="absolute pointer-events-none rounded-full"
+            style={{
+              inset: '-36px',
+              background: 'radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 65%)',
+              filter: 'blur(22px)',
+            }}
+          />
+
+          {/* Conic ring */}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              inset: '-2.5px',
+              borderRadius: '50%',
+              background:
+                'conic-gradient(from 160deg, rgba(168,85,247,0.0), rgba(168,85,247,0.45), rgba(124,58,237,0.55), rgba(168,85,247,0.45), rgba(168,85,247,0.0))',
+            }}
+          />
+
+          {/* Image */}
+          <div
+            className="relative overflow-hidden rounded-full"
+            style={{
+              width: 'clamp(160px, 20vw, 240px)',
+              height: 'clamp(160px, 20vw, 240px)',
+              boxShadow:
+                '0 0 0 1.5px rgba(168,85,247,0.5), 0 0 0 12px rgba(124,58,237,0.04), 0 40px 80px rgba(0,0,0,0.65)',
+            }}
           >
-            MERN Stack Developer
-          </motion.h2>
+            <Image
+              src="/mudassar-profile.jpg"
+              alt="Mudassar Zafar"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)' }}
+            />
+          </div>
+        </motion.div>
 
-          <motion.p variants={lineReveal} className="text-gray-400 text-lg md:text-xl mb-8 leading-relaxed max-w-xl">
-            Crafting exceptional digital experiences with React, Next.js, and modern web technologies. 
-            Specialized in building fast, scalable, and user-centric applications.
+        {/* Description */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-center"
+        >
+          <motion.p
+            variants={fadeUp}
+            className="max-w-md leading-relaxed mb-5 md:mb-7 text-sm md:text-base"
+            style={{ color: 'rgba(156,163,175,0.85)' }}
+          >
+            Crafting exceptional digital experiences with React, Next.js,&nbsp;and
+            modern web technologies. Building fast, scalable applications.
           </motion.p>
 
-          {/* Stats with enhanced styling */}
-          <motion.div variants={lineReveal} className="grid grid-cols-3 gap-4 md:gap-8 mb-10">
+          {/* Stats */}
+          <motion.div variants={fadeUp} className="flex items-center mb-5 md:mb-7">
             {[
-              { value: '3+', label: 'Years Experience' },
-              { value: '50+', label: 'Projects Completed' },
+              { value: '3+', label: 'Years Exp.' },
+              { value: '50+', label: 'Projects' },
               { value: '3.2', label: 'CGPA' },
-            ].map(({ value, label }) => (
-              <div key={label} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent rounded-xl blur-xl group-hover:blur-2xl transition-all" />
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-purple-500/30 transition-all">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            ].map(({ value, label }, i) => (
+              <div key={label} className="flex items-center">
+                {i > 0 && (
+                  <div
+                    className="self-stretch mx-5 md:mx-7 w-px"
+                    style={{ background: 'rgba(255,255,255,0.1)' }}
+                  />
+                )}
+                <div className="flex flex-col items-center">
+                  <span
+                    className="text-xl md:text-2xl font-bold leading-none"
+                    style={{
+                      background: 'linear-gradient(135deg, #d8b4fe 0%, #a855f7 55%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
                     {value}
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-400 mt-1">{label}</div>
+                  </span>
+                  <span
+                    className="text-[9px] mt-1 tracking-[0.22em] uppercase"
+                    style={{ color: 'rgba(107,114,128,0.9)' }}
+                  >
+                    {label}
+                  </span>
                 </div>
               </div>
             ))}
           </motion.div>
 
-          {/* CTAs with enhanced design */}
-          <motion.div variants={lineReveal} className="flex gap-4 flex-wrap items-center">
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="flex items-center gap-3 flex-wrap justify-center">
             <MovingBorderButton href="#contact">Get In Touch</MovingBorderButton>
             <a
               href="#projects"
-              className="group relative border-2 border-purple-600/50 text-purple-400 hover:border-purple-600 px-8 py-3 rounded-full transition-all font-medium overflow-hidden"
+              className="text-gray-300 hover:text-white px-6 py-2.5 rounded-full transition-all duration-300 font-medium text-sm hover:border-purple-500/30 hover:bg-white/[0.06]"
+              style={{
+                border: '1px solid rgba(255,255,255,0.09)',
+                background: 'rgba(255,255,255,0.03)',
+                backdropFilter: 'blur(12px)',
+              }}
             >
-              <span className="relative z-10">View Projects</span>
-              <span className="absolute inset-0 bg-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              View Projects
             </a>
           </motion.div>
         </motion.div>
-
-        {/* Right: profile image with enhanced effects */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
-        >
-          <div className="relative w-full aspect-square max-w-md mx-auto">
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-500 to-pink-500 rounded-3xl blur-3xl opacity-40 animate-pulse" />
-            
-            {/* Rotating border effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 opacity-75 animate-spin-slow" style={{ animationDuration: '8s' }} />
-            
-            {/* Image container */}
-            <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-purple-600/50 m-1 bg-[#0d0d12]">
-              <Image
-                src="/mudassar-profile.jpg"
-                alt="Mudassar Zafar — MERN Stack Developer"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-                priority
-              />
-              
-              {/* Overlay gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          </div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.9 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="w-px h-10 scroll-line"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(168,85,247,0.5), transparent)',
+          }}
+        />
+        <span
+          className="text-[9px] tracking-[0.3em] uppercase"
+          style={{ color: 'rgba(107,114,128,0.55)' }}
+        >
+          Scroll
+        </span>
+      </motion.div>
     </section>
   )
 }

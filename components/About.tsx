@@ -1,127 +1,124 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
+import { Section } from '@/components/ui/Section'
+import { Reveal, RevealGroup } from '@/components/ui/Reveal'
 
-const tools = ['Cursor AI', 'Clouded Code AI', 'Qoder AI', 'Kiro AI', 'Tare AI', 'Windsurf AI']
+const experience = [
+  {
+    company: 'Aryze Tech',
+    region: 'Germany',
+    role: 'Full Stack Developer',
+    period: 'Apr 2024 — Present',
+    note: 'Real-time, performance-focused React apps; drag-and-drop resource tools; APIs with Nest.js, Node & MongoDB.',
+  },
+  {
+    company: 'Tech9et',
+    region: 'United Kingdom',
+    role: 'Full Stack Developer',
+    period: 'Oct 2023 — Apr 2024',
+    note: 'Product-level solutions in React & Next.js, optimised for performance and SEO with distributed teams.',
+  },
+  {
+    company: 'Maxenius Solution',
+    region: 'Pakistan',
+    role: 'React / Next.js Developer',
+    period: 'Jan 2023 — Oct 2023',
+    note: 'Complex frontends, custom Node/Express APIs, auth flows and state management in a full MERN environment.',
+  },
+  {
+    company: 'Optimum Tech',
+    region: 'Pakistan',
+    role: 'Full Stack Developer Intern',
+    period: 'Aug 2022 — Dec 2022',
+    note: 'Built responsive React UI components and integrated REST APIs while mastering frontend–backend connectivity.',
+  },
+]
+
+const stack = {
+  Frontend: ['React.js', 'Next.js', 'TypeScript', 'JavaScript (ES6+)', 'Redux', 'Vite'],
+  'Styling & UI': ['Tailwind CSS', 'Material UI', 'Chakra UI', 'Framer Motion'],
+  Backend: ['Node.js', 'Nest.js', 'Express', 'REST APIs'],
+  Data: ['MongoDB', 'PostgreSQL', 'SQL'],
+  'Tools & AI': ['Git', 'Figma', 'Postman', 'Cursor', 'Claude Code'],
+}
 
 export default function About() {
-  const shouldReduce = useReducedMotion()
-
   return (
-    <section id="about" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-20">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            About <span className="gradient-text">Me</span>
+    <Section id="about">
+      <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        {/* Bio */}
+        <Reveal>
+          <span className="eyebrow">04 — About</span>
+          <h2 className="heading-lg mt-6">
+            Engineering is a craft.
+            <br />
+            <span className="italic text-fg-muted">I treat it like one.</span>
           </h2>
-          <p className="text-gray-400 max-w-3xl mx-auto">
-            Passionate about creating exceptional digital experiences
-          </p>
-        </motion.div>
+          <div className="mt-7 space-y-5 text-[15px] leading-relaxed text-fg-muted">
+            <p>
+              I&apos;m Mudassar Zafar, a senior React &amp; Next.js engineer with 3+
+              years building production web applications. I specialise in modern
+              JavaScript — React, Next.js, and clean component architecture — and
+              I&apos;m equally comfortable supporting the backend with Node.js,
+              Nest.js, and MongoDB.
+            </p>
+            <p>
+              I care about the details most people never notice but everyone feels:
+              load times, smooth interactions, code that the next developer can
+              actually read. That&apos;s what separates a site that works from a
+              product that lasts.
+            </p>
+            <p>
+              I hold a BS in Computer Science (GCUF, 2024) and work daily with modern
+              AI-assisted tooling to ship higher-quality work, faster.
+            </p>
+          </div>
 
-        {/* Bento grid */}
-        <BentoGrid className="md:grid-cols-3">
-          {/* Summary — spans 2 cols */}
-          <BentoGridItem
-            className="md:col-span-2"
-            title="Summary"
-            delay={0}
-            description={
-              <div className="space-y-3">
-                <p>
-                  Highly skilled React&nbsp;/&nbsp;Next.js frontend developer with over 3 years of hands-on experience building
-                  fast, scalable, and responsive web applications. Specialized in modern JavaScript frameworks with a
-                  strong focus on React.js, Next.js, and UI libraries like Tailwind CSS and Material UI.
-                </p>
-                <p>
-                  Also experienced in integrating and supporting backend functionality using Node.js, Nest.js and
-                  Express, with REST API development and MongoDB. Known for clean code, modular design, and
-                  delivering impactful digital products.
-                </p>
+          {/* Tech stack */}
+          <div className="mt-10 space-y-5">
+            {Object.entries(stack).map(([group, items]) => (
+              <div key={group} className="grid grid-cols-[120px_1fr] gap-4 border-t border-line pt-4">
+                <span className="label">{group}</span>
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                  {items.map((s) => (
+                    <span key={s} className="text-sm text-fg">
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </div>
-            }
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            }
-          />
+            ))}
+          </div>
+        </Reveal>
 
-          {/* Contact info */}
-          <BentoGridItem title="Contact" delay={0.1}>
-            <div className="space-y-3 mt-2">
-              <a href="mailto:malikmudassar6086@gmail.com" className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm">
-                <svg className="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="truncate">malikmudassar6086@gmail.com</span>
-              </a>
-              <a href="tel:03236086804" className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm">
-                <svg className="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                0323-6086804
-              </a>
-              <a
-                href="https://linkedin.com/in/mudassar-mern-842584250"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm"
-              >
-                <svg className="w-4 h-4 text-purple-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                <span className="truncate">LinkedIn</span>
-              </a>
-            </div>
-          </BentoGridItem>
-
-          {/* Education */}
-          <BentoGridItem title="Education" delay={0.15}>
-            <div className="space-y-4 mt-2">
-              <div>
-                <h4 className="text-base font-semibold text-white">Bachelor's in Computer Science</h4>
-                <p className="text-purple-400 text-sm">Completed 2024 · 3.81 CGPA</p>
-                <p className="text-gray-400 text-xs mt-1">Govt Post Graduate College Samnabad (GCUF), Faisalabad</p>
-              </div>
-              <div>
-                <h4 className="text-base font-semibold text-white">Intermediate (Pre-Medical)</h4>
-                <p className="text-purple-400 text-sm">2020</p>
-                <p className="text-gray-400 text-xs mt-1">Govt College Sitana Road, Faisalabad</p>
-              </div>
-            </div>
-          </BentoGridItem>
-
-          {/* AI Tools — spans 2 cols */}
-          <BentoGridItem
-            className="md:col-span-2"
-            title="AI-Powered Development Tools"
-            delay={0.2}
-            description="Experienced with modern AI development tools for accelerated, high-quality output:"
-          >
-            <div className="flex flex-wrap gap-2 mt-4">
-              {tools.map((tool) => (
-                <motion.span
-                  key={tool}
-                  whileHover={shouldReduce ? {} : { scale: 1.08 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-sm cursor-default border border-purple-600/20"
-                >
-                  {tool}
-                </motion.span>
+        {/* Experience timeline */}
+        <div>
+          <Reveal>
+            <span className="eyebrow mb-8 block">Experience</span>
+          </Reveal>
+          <RevealGroup className="relative">
+            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-line" aria-hidden />
+            <div className="flex flex-col gap-9">
+              {experience.map((e) => (
+                <Reveal key={e.company} as="div">
+                  <div className="relative pl-10">
+                    <span className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-accent bg-ink" />
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                      <h3 className="heading-sm text-[1.15rem]">{e.role}</h3>
+                      <span className="label text-fg-subtle">{e.period}</span>
+                    </div>
+                    <p className="mt-1 text-sm text-accent">
+                      {e.company}{' '}
+                      <span className="text-fg-subtle">· {e.region}</span>
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-fg-muted">{e.note}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
-          </BentoGridItem>
-        </BentoGrid>
+          </RevealGroup>
+        </div>
       </div>
-    </section>
+    </Section>
   )
 }

@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0d0d12;
-  --bg-secondary: #10101a;
-  --bg-card: #13131f;
-  --bg-card-alt: #16162a;
-  --bg-active: #1e1b4b;
-  --accent-purple: #7c3aed;
-  --accent-purple-light: #a855f7;
-  --text-primary: #ffffff;
-  --text-secondary: #8b8b9a;
-  --text-muted: #6b6b80;
+  --ink: #f4f1ea;
+  --surface: #fbf9f4;
+  --surface-2: #ffffff;
+  --surface-3: #ece7dd;
+  --line: rgba(38, 32, 22, 0.11);
+  --line-strong: rgba(38, 32, 22, 0.18);
+  --fg: #221d16;
+  --fg-muted: #6a635a;
+  --fg-subtle: #8b8275;
+  --accent: #bd5b38;
+  --accent-hover: #a54c2c;
 }
 
 * {
@@ -21,105 +22,148 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  overflow-x: hidden;
-}
-
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* === GRADIENT TEXT === */
-.gradient-text {
-  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+body {
+  background-color: var(--ink);
+  color: var(--fg);
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
 }
 
-/* === CUSTOM SCROLLBAR === */
+::selection {
+  background: rgba(189, 91, 56, 0.18);
+  color: #1a1610;
+}
+
+/* Keyboard focus — visible, on-brand, never on mouse clicks */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TYPE SYSTEM — an editorial serif leads; clean sans supports.
+   ────────────────────────────────────────────────────────────── */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-6 md:px-10;
+  }
+
+  /* Display headline — hero, closing statements */
+  .heading-xl {
+    @apply font-serif text-fg;
+    font-weight: 500;
+    font-size: clamp(2.85rem, 6.4vw, 5.25rem);
+    line-height: 1.03;
+    letter-spacing: -0.025em;
+  }
+
+  /* Section headline */
+  .heading-lg {
+    @apply font-serif text-fg;
+    font-weight: 500;
+    font-size: clamp(2rem, 4.2vw, 3.35rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+
+  /* Sub-headline / card title */
+  .heading-sm {
+    @apply font-serif text-fg;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  /* Lead paragraph */
+  .lead {
+    @apply text-fg-muted;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  /* Small meta label — replaces all monospace eyebrows */
+  .label {
+    @apply text-[11px] font-medium uppercase text-fg-subtle;
+    letter-spacing: 0.18em;
+  }
+
+  /* Section eyebrow */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] font-medium uppercase text-fg-subtle;
+    letter-spacing: 0.2em;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-px w-7;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-xl border bg-surface-2 shadow-soft transition-shadow duration-300 hover:shadow-float;
+    border-color: var(--line);
+  }
+
+  /* Floating panel — bordered grids that should read as one elevated surface */
+  .panel {
+    @apply shadow-soft;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-btn transition-colors duration-200 hover:bg-accent-hover;
+    letter-spacing: 0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium text-fg transition-colors duration-200 hover:bg-black/[0.04];
+    border-color: var(--line-strong);
+  }
+}
+
+/* Tabular figures for stat numbers */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Custom scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--ink);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-purple);
-  border-radius: 5px;
+  background: #d6cec0;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-purple-light);
+  background: #c3b9a7;
 }
 
-/* === ANIMATIONS === */
-
-/* Loading bounce (LoadingScreen) */
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Image shimmer placeholder */
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.shimmer-bg {
-  background: linear-gradient(
-    90deg,
-    rgba(124, 58, 237, 0.05) 25%,
-    rgba(124, 58, 237, 0.18) 37%,
-    rgba(124, 58, 237, 0.05) 63%
-  );
-  background-size: 400% 100%;
-  animation: shimmer 1.6s ease infinite;
-}
-
-/* Background beams — travelling stroke */
-@keyframes beamTravel {
-  0%   { stroke-dashoffset: 1000; }
-  100% { stroke-dashoffset: -1000; }
-}
-
-.beam-animate {
-  animation: beamTravel linear infinite;
-}
-
-/* Orbiting tech icons (desktop only) */
-@keyframes orbit {
-  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
-}
-
-@media (min-width: 1024px) {
-  .orbit-icon {
-    animation: orbit linear infinite;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
-}
-
-/* Hide OS cursor when CustomCursor is active */
-@media (pointer: fine) {
-  body.custom-cursor-active,
-  body.custom-cursor-active * {
-    cursor: none !important;
-  }
-}
-
-/* Hero scroll line pulse */
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
-  50%       { opacity: 1;   transform: scaleY(1); }
-}
-
-.scroll-line {
-  animation: scroll-pulse 2.4s ease-in-out infinite;
-  transform-origin: top;
 }

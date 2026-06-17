@@ -34,7 +34,7 @@ export default function Contact() {
           <span className="eyebrow justify-center">07 — Let&apos;s build</span>
           <h2 className="heading-xl mt-6 text-balance">
             Have a project worth{' '}
-            <span className="italic text-fg-muted">doing right?</span>
+            <span className="italic text-accent">doing right?</span>
           </h2>
           <p className="lead mx-auto mt-6 max-w-xl">
             Tell me what you&apos;re building. I&apos;ll reply within one business day
@@ -43,7 +43,7 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-14 grid max-w-4xl gap-px overflow-hidden rounded-3xl border border-line bg-line shadow-float md:grid-cols-[1fr_1.15fr]">
+        <div className="mx-auto mt-14 grid max-w-4xl gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-float md:grid-cols-[1fr_1.15fr]">
           {/* Left: direct contact */}
           <Reveal className="flex flex-col justify-between gap-8 bg-surface-2 p-8 md:p-10">
             <div>

@@ -40,22 +40,30 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
     <div className="border-b border-line">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-6 py-6 text-left"
+        className="group flex w-full items-center justify-between gap-6 py-6 text-left"
         aria-expanded={open}
       >
         <span className="flex items-baseline gap-4">
           <span className="label pt-1 text-accent">
             {String(index + 1).padStart(2, '0')}
           </span>
-          <span className="heading-sm text-[1.15rem] md:text-[1.3rem]">{q}</span>
+          <span
+            className={`heading-sm text-[1.15rem] transition-colors duration-200 md:text-[1.3rem] ${
+              open ? 'text-accent' : 'group-hover:text-accent'
+            }`}
+          >
+            {q}
+          </span>
         </span>
         <span
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-fg-muted transition-transform duration-300 ${
-            open ? 'rotate-45' : ''
+          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+            open
+              ? 'rotate-45 border-accent bg-accent/10 text-accent'
+              : 'border-line text-fg-muted group-hover:border-accent/40 group-hover:text-accent'
           }`}
         >
           <svg className="h-3.5 w-3.5" viewBox="0 0 14 14" fill="none" aria-hidden>
-            <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
           </svg>
         </span>
       </button>
@@ -85,7 +93,12 @@ export default function FAQ() {
         <div>
           <SectionHeader
             eyebrow="06 — FAQ"
-            title="Questions, answered before you ask."
+            title={
+              <>
+                Questions, answered{' '}
+                <span className="text-accent">before you ask.</span>
+              </>
+            }
             description="Still unsure about something? A 20-minute call will clear it up faster than any page."
           />
           <a href="#contact" className="btn-secondary mt-8 inline-flex">

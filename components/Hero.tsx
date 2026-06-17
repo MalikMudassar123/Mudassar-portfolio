@@ -3,11 +3,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 14 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: 0.1 + i * 0.09, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, delay: 0.06 + i * 0.07, ease: [0.22, 1, 0.36, 1] },
   }),
 }
 
@@ -35,7 +35,11 @@ export default function Hero() {
           {...animate(0)}
           className="flex flex-wrap items-center gap-x-3 gap-y-1 label"
         >
-          <span className="text-fg-muted">Senior React &amp; Next.js Engineer</span>
+          <span className="text-fg-muted">Full-Stack Engineer</span>
+          <span className="text-accent" aria-hidden>
+            ·
+          </span>
+          <span className="text-fg-muted">Specialized in AI-Powered Tools</span>
           <span className="text-fg-subtle/60" aria-hidden>
             —
           </span>
@@ -44,7 +48,7 @@ export default function Hero() {
 
         {/* Headline */}
         <motion.h1 {...animate(1)} className="mt-8 max-w-[18ch] heading-xl text-balance">
-          I build web apps that feel fast{' '}
+          <span className="text-accent">I build web apps that feel fast</span>{' '}
           <span className="italic text-fg-muted">and scale far.</span>
         </motion.h1>
 
@@ -69,15 +73,19 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Editorial meta strip — replaces imagery with structured information */}
-      <motion.div {...animate(4)} className="container-x mt-14 md:mt-20">
-        <dl className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-line pt-10 sm:grid-cols-4">
+      {/* Stats — elevated panel with hairline dividers */}
+      <motion.div {...animate(4)} className="container-x relative mt-14 md:mt-20">
+        <dl className="panel grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">
           {stats.map(({ v, l }) => (
-            <div key={l} className="flex flex-col gap-2.5">
-              <dt className="font-serif text-[2rem] font-medium leading-none text-fg tnum md:text-[2.5rem]">
+            <div
+              key={l}
+              className="flex flex-col gap-3.5 bg-surface-2 p-6 transition-colors duration-300 hover:bg-surface md:p-7"
+            >
+              <span className="h-[3px] w-7 rounded-full bg-accent" aria-hidden />
+              <dt className="font-serif text-[2rem] font-medium leading-none text-fg tnum md:text-[2.4rem]">
                 {v}
               </dt>
-              <dd className="max-w-[18ch] text-[13px] leading-relaxed text-fg-subtle">{l}</dd>
+              <dd className="text-[13px] leading-relaxed text-fg-subtle">{l}</dd>
             </div>
           ))}
         </dl>

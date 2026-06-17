@@ -7,13 +7,14 @@
   --surface: #fbf9f4;
   --surface-2: #ffffff;
   --surface-3: #ece7dd;
-  --line: rgba(38, 32, 22, 0.11);
-  --line-strong: rgba(38, 32, 22, 0.18);
-  --fg: #221d16;
-  --fg-muted: #6a635a;
-  --fg-subtle: #8b8275;
-  --accent: #bd5b38;
-  --accent-hover: #a54c2c;
+  --line: rgba(30, 27, 42, 0.10);
+  --line-strong: rgba(30, 27, 42, 0.16);
+  --fg: #1c1a26;
+  --fg-muted: #5d586a;
+  --fg-subtle: #8d8898;
+  --accent: #6e56cf;
+  --accent-hover: #5d45b8;
+  --accent-soft: rgba(110, 86, 207, 0.1);
 }
 
 * {
@@ -40,8 +41,8 @@ body {
 }
 
 ::selection {
-  background: rgba(189, 91, 56, 0.18);
-  color: #1a1610;
+  background: rgba(110, 86, 207, 0.18);
+  color: #1c1a26;
 }
 
 /* Keyboard focus — visible, on-brand, never on mouse clicks */
@@ -117,23 +118,23 @@ body {
 
   /* Surfaces */
   .card {
-    @apply rounded-xl border bg-surface-2 shadow-soft transition-shadow duration-300 hover:shadow-float;
+    @apply rounded-2xl border bg-surface-2 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float;
     border-color: var(--line);
   }
 
   /* Floating panel — bordered grids that should read as one elevated surface */
   .panel {
-    @apply shadow-soft;
+    @apply rounded-2xl shadow-soft;
   }
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-btn transition-colors duration-200 hover:bg-accent-hover;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-btn transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-btn-hover;
     letter-spacing: 0;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium text-fg transition-colors duration-200 hover:bg-black/[0.04];
-    border-color: var(--line-strong);
+    @apply inline-flex items-center justify-center gap-2 rounded-full border bg-surface-2 px-6 py-3 text-sm font-medium text-fg shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong;
+    border-color: var(--line);
   }
 }
 
@@ -151,12 +152,12 @@ body {
   background: var(--ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: #d6cec0;
+  background: #cdc9d6;
   border: 2px solid var(--ink);
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c3b9a7;
+  background: #b8b3c6;
 }
 
 @media (prefers-reduced-motion: reduce) {

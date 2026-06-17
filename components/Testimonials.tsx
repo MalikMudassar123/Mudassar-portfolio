@@ -39,7 +39,7 @@ export default function Testimonials() {
             title={
               <>
                 The reason teams{' '}
-                <span className="text-fg-muted">keep me on speed dial.</span>
+                <span className="text-accent">keep me on speed dial.</span>
               </>
             }
             description="Talent gets you in the door. How it feels to actually work with someone is what earns the next project — and the referral after that."
@@ -74,11 +74,15 @@ export default function Testimonials() {
             ))}
           </RevealGroup>
         ) : (
-          <RevealGroup className="panel grid gap-px self-start overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+          <RevealGroup className="panel grid gap-px self-start overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
             {commitments.map((c) => (
               <Reveal key={c.title} as="div">
-                <div className="h-full bg-surface p-8">
-                  <span className="block h-px w-8 bg-accent/70" />
+                <div className="group h-full bg-surface p-8 transition-colors duration-300 hover:bg-surface-2">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-accent transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+                    <svg className="h-[18px] w-[18px]" viewBox="0 0 16 16" fill="none" aria-hidden>
+                      <path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                   <h3 className="mt-5 heading-sm text-[1.15rem]">{c.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">{c.desc}</p>
                 </div>

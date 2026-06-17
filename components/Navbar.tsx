@@ -18,7 +18,7 @@ export default function Navbar() {
   const shouldReduce = useReducedMotion()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -41,57 +41,69 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div
-        className={`absolute inset-0 border-b transition-all duration-300 ${
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 md:pt-4">
+      <nav
+        className={`container-x relative flex h-14 items-center justify-between rounded-full border px-3 pl-5 transition-all duration-300 md:h-16 md:px-3 md:pl-6 ${
           scrolled
-            ? 'border-line bg-ink/80 backdrop-blur-xl'
+            ? 'border-line bg-surface-2/80 shadow-soft backdrop-blur-xl'
             : 'border-transparent bg-transparent'
         }`}
-      />
-
-      <nav className="container-x relative flex h-16 items-center justify-between md:h-20">
+      >
         {/* Wordmark */}
-        <a href="#top" className="group flex items-baseline gap-px font-serif text-[19px] font-medium tracking-tight text-fg">
+        <a
+          href="#top"
+          className="flex items-baseline gap-px font-serif text-[19px] font-medium tracking-tight text-fg"
+        >
           Mudassar
           <span className="text-accent">.</span>
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden items-center gap-1 md:flex">
+        {/* Centered links */}
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                active === href
-                  ? 'text-fg'
-                  : 'text-fg-muted hover:text-fg'
+              className={`relative rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-200 ${
+                active === href ? 'text-fg' : 'text-fg-muted hover:text-fg'
               }`}
             >
+              {active === href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 -z-10 rounded-full bg-fg/[0.05]"
+                  transition={{ type: 'spring', stiffness: 400, damping: 34 }}
+                />
+              )}
               {label}
             </a>
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="#contact"
-            className="btn-primary px-5 py-2.5 text-[13px]"
+        {/* CTA */}
+        <a
+          href="#contact"
+          className="btn-primary group hidden h-10 px-5 py-0 text-[13px] md:inline-flex"
+        >
+          Book a call
+          <svg
+            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden
           >
-            Book a call
-          </a>
-        </div>
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
 
         {/* Mobile toggle */}
         <button
-          className="flex h-10 w-10 items-center justify-center text-fg md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-fg md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             {open ? (
               <path strokeLinecap="round" strokeWidth={1.6} d="M6 18 18 6M6 6l12 12" />
             ) : (
@@ -108,25 +120,21 @@ export default function Navbar() {
             initial={shouldReduce ? { opacity: 1 } : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-x-0 top-16 border-b border-line bg-ink/95 backdrop-blur-xl md:hidden"
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="container-x mt-2 overflow-hidden rounded-2xl border border-line bg-surface-2/95 shadow-float backdrop-blur-xl md:hidden"
           >
-            <div className="container-x flex flex-col gap-1 py-6">
+            <div className="flex flex-col gap-1 p-4">
               {navLinks.map(({ href, label }) => (
                 <a
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-lg font-medium text-fg-muted transition-colors hover:bg-black/[0.04] hover:text-fg"
+                  className="rounded-xl px-4 py-3 text-base font-medium text-fg-muted transition-colors hover:bg-fg/[0.04] hover:text-fg"
                 >
                   {label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="btn-primary mt-3"
-              >
+              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary mt-2">
                 Book a call
               </a>
             </div>

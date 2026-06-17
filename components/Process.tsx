@@ -44,17 +44,19 @@ export default function Process() {
         title={
           <>
             A clear path from{' '}
-            <span className="text-fg-muted">first call to launch.</span>
+            <span className="text-accent">first call to launch.</span>
           </>
         }
         description="No black boxes, no surprises. You'll always know exactly what's happening and what comes next."
       />
 
-      <RevealGroup className="panel mt-16 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+      <RevealGroup className="panel mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
         {steps.map((s) => (
           <Reveal key={s.no} as="div">
             <div className="group relative flex h-full flex-col bg-surface p-9 transition-colors duration-300 hover:bg-surface-2">
-              <span className="label text-accent">{s.no}</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/20 bg-accent/10 font-serif text-[15px] font-medium text-accent transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+                {s.no}
+              </span>
               <h3 className="mt-6 heading-sm">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-fg-muted">{s.desc}</p>
             </div>

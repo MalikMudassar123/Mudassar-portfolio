@@ -66,13 +66,16 @@ pnpm dev
 ## 🎨 Customization
 
 ### Colors
-Edit `tailwind.config.ts` to change the color scheme:
+The theme is an ivory paper palette with a refined violet accent. Edit the
+`colors` in `tailwind.config.ts` (and the matching CSS variables in
+`app/globals.css`) to adjust it:
 ```typescript
 colors: {
-  primary: '#0d0d12',
-  secondary: '#13131f',
-  accent: '#7c3aed',
-  'accent-light': '#a855f7',
+  ink: '#F4F1EA',        // page background
+  'surface-2': '#FFFFFF', // cards
+  fg: '#1C1A26',          // text
+  accent: '#6E56CF',      // violet accent
+  'accent-hover': '#5D45B8',
 }
 ```
 

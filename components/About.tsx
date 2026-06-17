@@ -52,7 +52,7 @@ export default function About() {
           <h2 className="heading-lg mt-6">
             Engineering is a craft.
             <br />
-            <span className="italic text-fg-muted">I treat it like one.</span>
+            <span className="italic text-accent">I treat it like one.</span>
           </h2>
           <div className="mt-7 space-y-5 text-[15px] leading-relaxed text-fg-muted">
             <p>

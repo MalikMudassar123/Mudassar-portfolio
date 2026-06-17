@@ -112,34 +112,60 @@ function CaseRow({ study, index }: { study: CaseStudy; index: number }) {
   const [loaded, setLoaded] = useState(false)
   const flip = index % 2 === 1
 
+  const media = (
+    <div className="relative aspect-[16/11] overflow-hidden rounded-xl bg-surface-3">
+      {!loaded && <div className="absolute inset-0 animate-pulse bg-surface-3" />}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={study.image}
+        alt={study.title}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`h-full w-full object-cover object-top transition-all duration-700 group-hover:scale-[1.04] ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      {study.url && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-t from-accent/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="absolute bottom-4 left-4 inline-flex translate-y-1 items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-xs font-medium text-accent-ink opacity-0 shadow-btn transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            View live site
+            <svg className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path d="M5 11 11 5M6 5h5v5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </>
+      )}
+    </div>
+  )
+
   return (
     <Reveal className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
       {/* Visual */}
       <div className={flip ? 'lg:order-2' : ''}>
-        <div className="card group relative overflow-hidden p-2">
-          <div className="relative aspect-[16/11] overflow-hidden rounded-xl bg-surface-3">
-            {!loaded && <div className="absolute inset-0 animate-pulse bg-surface-3" />}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={study.image}
-              alt={study.title}
-              loading="lazy"
-              onLoad={() => setLoaded(true)}
-              className={`h-full w-full object-cover object-top transition-all duration-700 group-hover:scale-[1.03] ${
-                loaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          </div>
-        </div>
+        {study.url ? (
+          <a
+            href={study.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${study.title}`}
+            className="card group relative block overflow-hidden p-2"
+          >
+            {media}
+          </a>
+        ) : (
+          <div className="card group relative overflow-hidden p-2">{media}</div>
+        )}
       </div>
 
       {/* Narrative */}
       <div className={flip ? 'lg:order-1' : ''}>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <p className="eyebrow">{study.category}</p>
-          <p className="label text-fg-subtle">
-            <span className="text-accent">{study.metric.value}</span> · {study.metric.label}
-          </p>
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/[0.07] px-3 py-1">
+            <span className="text-xs font-semibold text-accent">{study.metric.value}</span>
+            <span className="text-[11px] text-fg-subtle">{study.metric.label}</span>
+          </span>
         </div>
         <h3 className="mt-5 heading-lg" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.4rem)' }}>
           {study.title}
@@ -155,7 +181,7 @@ function CaseRow({ study, index }: { study: CaseStudy; index: number }) {
           {study.stack.map((s) => (
             <span
               key={s}
-              className="rounded-full border border-line px-3 py-1 text-xs text-fg-subtle"
+              className="rounded-full border border-line px-3 py-1 text-xs text-fg-subtle transition-colors hover:border-accent/40 hover:text-accent"
             >
               {s}
             </span>
@@ -188,7 +214,7 @@ export default function CaseStudies() {
         title={
           <>
             Real problems.{' '}
-            <span className="text-fg-muted">Measured results.</span>
+            <span className="text-accent">Measured results.</span>
           </>
         }
         description="A look at how I think — not just what I ship. Each project below traces the problem, the approach, and the outcome."
@@ -203,11 +229,14 @@ export default function CaseStudies() {
       {/* More work */}
       <Reveal className="mt-28">
         <p className="eyebrow mb-10">Also delivered</p>
-        <div className="panel grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+        <div className="panel grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
           {more.map((m) => (
-            <div key={m.title} className="bg-surface p-8">
+            <div key={m.title} className="group bg-surface p-8 transition-colors duration-300 hover:bg-surface-2">
+              <span className="mb-5 block h-[3px] w-7 rounded-full bg-accent/70" aria-hidden />
               <div className="flex items-start justify-between gap-3">
-                <h4 className="heading-sm text-[1.15rem]">{m.title}</h4>
+                <h4 className="heading-sm text-[1.15rem] transition-colors group-hover:text-accent">
+                  {m.title}
+                </h4>
                 {m.url && (
                   <a
                     href={m.url}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 
@@ -115,13 +116,14 @@ function CaseRow({ study, index }: { study: CaseStudy; index: number }) {
   const media = (
     <div className="relative aspect-[16/11] overflow-hidden rounded-xl bg-surface-3">
       {!loaded && <div className="absolute inset-0 animate-pulse bg-surface-3" />}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={study.image}
-        alt={study.title}
+        alt={`${study.title} — ${study.category} web project built by Mudassar Zafar`}
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
         loading="lazy"
         onLoad={() => setLoaded(true)}
-        className={`h-full w-full object-cover object-top transition-all duration-700 group-hover:scale-[1.04] ${
+        className={`object-cover object-top transition-all duration-700 group-hover:scale-[1.04] ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -208,8 +210,9 @@ function CaseRow({ study, index }: { study: CaseStudy; index: number }) {
 
 export default function CaseStudies() {
   return (
-    <Section id="work">
+    <Section id="work" labelledBy="work-heading">
       <SectionHeader
+        headingId="work-heading"
         eyebrow="02 — Selected work"
         title={
           <>

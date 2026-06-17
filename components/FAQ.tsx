@@ -88,10 +88,11 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQ() {
   return (
-    <Section id="faq">
+    <Section id="faq" labelledBy="faq-heading">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div>
           <SectionHeader
+            headingId="faq-heading"
             eyebrow="06 — FAQ"
             title={
               <>

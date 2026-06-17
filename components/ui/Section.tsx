@@ -8,12 +8,15 @@ interface SectionProps {
   className?: string
   /** Hide the top hairline divider (e.g. the first section after the hero). */
   flush?: boolean
+  /** id of the heading that names this region — exposes an accessible name. */
+  labelledBy?: string
 }
 
-export function Section({ id, children, className, flush }: SectionProps) {
+export function Section({ id, children, className, flush, labelledBy }: SectionProps) {
   return (
     <section
       id={id}
+      aria-labelledby={labelledBy}
       className={cn(
         'relative scroll-mt-24 py-24 md:py-32',
         !flush && 'border-t border-line',
@@ -31,6 +34,8 @@ interface SectionHeaderProps {
   description?: ReactNode
   align?: 'left' | 'center'
   className?: string
+  /** id applied to the h2 — pair with Section's labelledBy. */
+  headingId?: string
 }
 
 export function SectionHeader({
@@ -39,6 +44,7 @@ export function SectionHeader({
   description,
   align = 'left',
   className,
+  headingId,
 }: SectionHeaderProps) {
   return (
     <Reveal
@@ -49,7 +55,7 @@ export function SectionHeader({
       )}
     >
       <span className="eyebrow">{eyebrow}</span>
-      <h2 className="heading-lg max-w-3xl text-balance">{title}</h2>
+      <h2 id={headingId} className="heading-lg max-w-3xl text-balance">{title}</h2>
       {description && (
         <p className={cn('lead max-w-2xl', align === 'center' && 'mx-auto')}>
           {description}

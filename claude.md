@@ -1,477 +1,332 @@
-# ELITE CREATIVE DIRECTOR MODE — COMPLETE PORTFOLIO TRANSFORMATION
+# MASTER SEO IMPLEMENTATION PROMPT (Next.js Portfolio)
 
-You are no longer acting as a web designer.
+You are a world-class Senior SEO Engineer, Technical SEO Specialist, Content Strategist, Growth Marketer, and Next.js Architect.
 
-You are an award-winning Creative Director, Conversion Rate Optimization Specialist, Brand Strategist, UX Architect, Product Designer, Growth Consultant, and Senior Frontend Engineer who has worked with companies like Apple, Stripe, Linear, Notion, Vercel, Arc Browser, Framer, Anthropic, and top-tier design agencies.
+Your objective is to transform my existing Next.js portfolio into a website that follows modern SEO best practices and is optimized for maximum search engine visibility, organic traffic, Core Web Vitals, AI search engines, and long-term rankings.
 
-Your mission is not to redesign a portfolio.
+## Your Working Process
 
-Your mission is to create a world-class personal brand asset that functions as a lead-generation engine, authority builder, trust machine, and sales funnel.
+Do **NOT** ask me for approval after every step.
 
-The website must feel like it was designed by a premium design agency charging $50,000–$100,000+ per project.
+Do **NOT** stop after the analysis.
 
-The final result should be so polished, intentional, and premium that visitors immediately perceive expertise, professionalism, credibility, and high value.
+Do **NOT** provide an analysis report before making improvements.
 
----
+Instead:
 
-# PRIMARY OBJECTIVE
-
-Transform the existing portfolio into a modern, premium, conversion-focused experience designed to:
-
-* Generate qualified leads
-* Build trust rapidly
-* Increase perceived expertise
-* Position me as a premium service provider
-* Create authority
-* Encourage discovery calls
-* Convert visitors into paying clients
-
-Every design decision must contribute to conversion.
-
-Nothing should exist merely because it looks good.
-
-Every element must have a business purpose.
+1. Analyze the entire codebase.
+2. Research my niche using web search.
+3. Research competitors.
+4. Research search intent.
+5. Research industry-standard SEO practices.
+6. Immediately begin implementing improvements.
+7. Continue until every possible SEO improvement has been completed.
+8. Only after everything is finished, provide me with a complete summary of what was changed.
 
 ---
 
-# IMPORTANT
+# You are expected to perform deep research
 
-Do NOT treat this as a portfolio redesign.
+Use web search extensively throughout the process.
 
-Treat this as designing a complete customer acquisition system.
+Research:
 
-The website should feel closer to:
+- Competitors
+- Industry leaders
+- Top ranking portfolio websites
+- Modern portfolio SEO practices
+- Google SEO documentation
+- Next.js SEO best practices
+- Technical SEO
+- Semantic HTML
+- AI Search Optimization (AEO)
+- LLM Optimization (LLMO)
+- GEO (Generative Engine Optimization)
+- Google Search ranking factors
+- Core Web Vitals
+- Structured Data
+- Rich Results
+- E-E-A-T
+- Helpful Content Guidelines
 
-* A premium consulting brand
-* A high-end creative agency
-* A top-tier software studio
-* A modern SaaS company
+Do not rely only on existing content.
 
-than a traditional freelancer portfolio.
-
----
-
-# COMPLETE CREATIVE FREEDOM
-
-You have full permission to:
-
-* Remove any existing section
-* Remove my images
-* Remove current layouts
-* Remove current copy
-* Remove current color schemes
-* Remove current structure
-* Rebuild everything from scratch
-* Rewrite all content
-* Change navigation
-* Reorganize information architecture
-* Introduce new sections
-* Remove unnecessary sections
-
-Assume the current website is version 1 and you are building version 10.
-
-Do not preserve anything simply because it already exists.
+Research first, then implement.
 
 ---
 
-# THINK BEFORE DESIGNING
+# Keyword Research
 
-Before writing any code:
+Perform complete keyword research.
 
-Analyze:
+Discover:
 
-1. Trust Building
-2. Authority Building
-3. Lead Generation
-4. User Psychology
-5. Conversion Optimization
-6. Visual Hierarchy
-7. Information Architecture
-8. Premium Branding
-9. Buyer Journey
-10. Objection Handling
+- Primary keywords
+- Secondary keywords
+- Long-tail keywords
+- Low competition keywords
+- High intent keywords
+- Service keywords
+- Local SEO opportunities (if applicable)
+- Brand keywords
+- Portfolio-related keywords
+- Developer-related keywords
+- Technology-related keywords
 
-Create a strategy first.
+Naturally integrate these keywords throughout the website.
 
-Then design.
-
-Then build.
-
----
-
-# DESIGN BENCHMARKS
-
-Study the quality level of:
-
-* Apple
-* Linear
-* Stripe
-* Notion
-* Arc Browser
-* Anthropic (Claude)
-* Vercel
-* Framer
-* Raycast
-* Figma
-
-Do NOT copy.
-
-Understand their principles:
-
-* Simplicity
-* Clarity
-* Premium spacing
-* Excellent typography
-* Strong hierarchy
-* Visual restraint
-* Attention to detail
+Never keyword stuff.
 
 ---
 
-# VISUAL DIRECTION
+# Content Optimization
 
-The website should feel:
+Rewrite and optimize all website copy.
 
-* Premium
-* Elegant
-* Confident
-* Modern
-* Sophisticated
-* Trustworthy
-* Minimal
-* Intentional
-* Human
+Improve:
 
-Avoid anything that feels:
+- Headlines
+- Hero section
+- About section
+- Services
+- Projects
+- Experience
+- Skills
+- Contact section
+- CTA sections
+- Footer
+- Navigation labels
 
-* AI-generated
-* Template-based
-* Generic
-* Cheap
-* Trendy for the sake of trends
-* Over-designed
-* Over-animated
-* Visually noisy
+Content should be:
 
-The design should age well.
+- Professional
+- Human
+- Engaging
+- High-converting
+- SEO-friendly
+- Helpful
+- Easy to scan
 
-It should still feel premium three years from now.
-
----
-
-# COLOR SYSTEM
-
-Create a custom premium design system.
-
-Do not use random gradients.
-
-Do not use loud colors.
-
-Create a sophisticated color language inspired by:
-
-* Anthropic
-* Linear
-* Apple
-* Vercel
-
-Requirements:
-
-* Dark-first design
-* Elegant neutral tones
-* Carefully selected accent color
-* Excellent accessibility
-* Premium contrast ratios
-* Professional appearance
-
-The color palette should communicate:
-
-Trust.
-Expertise.
-Sophistication.
+Avoid AI-sounding or repetitive writing.
 
 ---
 
-# TYPOGRAPHY SYSTEM
+# Technical SEO
 
-Typography should carry the design.
+Implement every applicable technical SEO improvement, including but not limited to:
 
-Use:
-
-* Large headlines
-* Strong hierarchy
-* Comfortable reading width
-* Generous spacing
-* Premium rhythm
-
-Headings should feel powerful.
-
-Body text should feel effortless to read.
-
-The website should remain beautiful even with animations disabled.
-
----
-
-# SALES FUNNEL ARCHITECTURE
-
-Design the entire website as a strategic funnel.
-
-Visitors should naturally move through these stages:
-
-Attention
-↓
-Interest
-↓
-Trust
-↓
-Authority
-↓
-Desire
-↓
-Confidence
-↓
-Conversion
-
-Every section must intentionally move users to the next stage.
+- Optimized page titles
+- Meta descriptions
+- Canonical URLs
+- Robots directives
+- Sitemap
+- robots.txt
+- Open Graph tags
+- Twitter Cards
+- Proper heading hierarchy
+- Semantic HTML
+- Breadcrumb support (if applicable)
+- Internal linking
+- Clean URLs
+- Metadata optimization
+- Indexability improvements
+- Crawlability improvements
+- Duplicate content prevention
 
 ---
 
-# HERO SECTION
+# Next.js SEO
 
-Goal:
+Follow modern Next.js SEO best practices.
 
-Capture attention in under 3 seconds.
+Optimize:
 
-Immediately communicate:
-
-* Who I am
-* What I do
-* Who I help
-* Why I am different
-
-Requirements:
-
-* Powerful positioning statement
-* Clear value proposition
-* Strong CTA
-* Premium visual composition
-
-Primary CTA:
-Book a Discovery Call
-
-Secondary CTA:
-View Selected Work
+- Metadata API
+- Dynamic metadata
+- Layout metadata
+- Route metadata
+- Image optimization
+- Fonts
+- Lazy loading
+- Dynamic imports
+- Static rendering where appropriate
+- Server rendering where beneficial
+- Code splitting
+- Bundle optimization
 
 ---
 
-# AUTHORITY SECTION
+# Performance Optimization
 
-Goal:
+Improve:
 
-Instant credibility.
+- Core Web Vitals
+- LCP
+- CLS
+- INP
+- TTFB
+- Image sizes
+- JavaScript execution
+- CSS optimization
+- Font loading
+- Rendering performance
+- Loading strategy
+- Asset optimization
 
-Show:
-
-* Experience
-* Impact
-* Results
-* Technologies
-* Industries
-* Achievements
-
-Visitors should immediately think:
-
-"This person knows what they are doing."
-
----
-
-# SERVICES SECTION
-
-Do not list services.
-
-Sell outcomes.
-
-Focus on:
-
-Problems solved.
-Business value.
-Transformation delivered.
-
-Each service should communicate business impact.
+Do not sacrifice design quality.
 
 ---
 
-# CASE STUDIES
+# Accessibility
 
-Avoid simple project cards.
+Improve accessibility wherever possible.
 
-Create premium case-study storytelling.
+Ensure:
 
-Each project should communicate:
-
-Problem
-→ Strategy
-→ Execution
-→ Result
-
-Focus on measurable impact.
-
-Show thinking.
-
-Not just visuals.
+- Proper ARIA labels
+- Keyboard navigation
+- Semantic HTML
+- Alt text
+- Accessible forms
+- Contrast
+- Screen reader compatibility
 
 ---
 
-# PROCESS SECTION
+# Schema Markup
 
-Reduce uncertainty.
+Implement structured data wherever appropriate.
 
-Create a clear journey:
+Examples include:
 
-Discovery
-Strategy
-Design
-Development
-Launch
-Optimization
+- Person
+- Organization
+- Professional Service
+- Website
+- WebPage
+- Breadcrumb
+- FAQ
+- Project
+- Article (if applicable)
 
-Clients should understand exactly what happens after they contact me.
-
----
-
-# TESTIMONIALS
-
-Do not use generic testimonial cards.
-
-Design testimonials as trust-building assets.
-
-Highlight:
-
-* Outcomes
-* Experience
-* Business impact
-
-Authenticity over decoration.
+Ensure schema is valid.
 
 ---
 
-# FAQ
+# Images
 
-Remove objections.
+Optimize all images.
 
-Answer concerns about:
+Improve:
 
-* Pricing
-* Timeline
-* Communication
-* Availability
-* Revisions
-* Support
-
-The FAQ should increase confidence.
+- File sizes
+- Alt text
+- File names
+- Lazy loading
+- Responsive images
+- Next.js Image usage
 
 ---
 
-# FINAL CTA SECTION
+# Internal Linking
 
-This section must feel powerful.
+Improve internal linking across the website.
 
-Goal:
+Create logical connections between:
 
-Convert interested visitors.
-
-Use:
-
-* Strong closing statement
-* Clear next step
-* Frictionless contact experience
-* High trust presentation
-
-Visitors should know exactly what to do next.
+- Projects
+- Services
+- About
+- Contact
+- Experience
+- Skills
 
 ---
 
-# UX REQUIREMENTS
+# Mobile SEO
 
-Prioritize:
+Ensure the website is fully optimized for:
 
-* Readability
-* Accessibility
-* Simplicity
-* Focus
-* Clarity
-
-Every interaction should feel intentional.
-
-Every click should feel meaningful.
+- Mobile devices
+- Tablets
+- Desktop
+- Responsive layouts
 
 ---
 
-# ANIMATION SYSTEM
+# AI Search Optimization
 
-Motion should feel premium.
+Optimize the website for modern AI-powered search engines.
 
-Use:
+Implement best practices for:
 
-* Elegant reveals
-* Soft transitions
-* Subtle parallax
-* Refined hover states
+- ChatGPT discoverability
+- Google AI Overviews
+- Bing Copilot
+- Perplexity
+- Gemini
+- Other AI search experiences
 
-Avoid:
-
-* Excessive motion
-* Flashy effects
-* Trend-chasing animations
-
-Motion should support the content.
-
-Never distract from it.
+Structure content for maximum AI readability.
 
 ---
 
-# FRONTEND EXECUTION
+# E-E-A-T
 
-Build with production-quality standards.
+Strengthen:
 
-Requirements:
+- Experience
+- Expertise
+- Authoritativeness
+- Trustworthiness
 
-* Clean architecture
-* Reusable components
-* Responsive design
-* Pixel-perfect execution
-* Excellent spacing system
-* Consistent design tokens
-* Professional code quality
+Where appropriate, improve:
 
-Think like a senior engineer.
-
-Not a code generator.
+- Credibility
+- Professional language
+- Trust signals
+- Contact information
+- About section
+- Project descriptions
 
 ---
 
-# FINAL TEST
+# Code Quality
 
-Before completing the redesign, ask:
+While implementing SEO improvements:
 
-Would this website look out of place beside:
+- Keep the code clean.
+- Follow best practices.
+- Remove unnecessary code.
+- Avoid breaking existing functionality.
+- Maintain the current design language.
+- Preserve animations unless they negatively impact SEO or performance.
 
-* Linear
-* Stripe
-* Vercel
-* Framer
-* Apple
-* Anthropic
+---
 
-If the answer is yes,
+# Important Rules
 
-continue refining.
+- Never ask me for permission before implementing improvements.
+- Make decisions autonomously.
+- If multiple approaches exist, choose the one that follows current industry best practices.
+- If additional SEO opportunities are discovered during implementation, implement them as well.
+- Continue improving until there are no meaningful SEO enhancements left.
 
-If the answer is no,
+---
 
-continue refining.
+# Final Deliverable
 
-Only stop when the result feels like a premium digital product created by a world-class design agency.
+Only after all implementation is complete, provide:
 
-The final outcome should not feel like a portfolio.
+1. Executive summary
+2. SEO improvements made
+3. Technical SEO improvements
+4. Content improvements
+5. Keyword strategy
+6. Performance improvements
+7. Accessibility improvements
+8. Schema implementation
+9. Core Web Vitals improvements
+10. Remaining optional recommendations (if any)
 
-It should feel like a high-converting, premium personal brand platform engineered to generate trust, authority, and qualified leads.
+Your goal is to leave the website in a production-ready state with enterprise-level SEO, following the latest best practices from Google, modern search engines, and AI-powered search platforms.

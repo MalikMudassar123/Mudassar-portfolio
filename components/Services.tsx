@@ -72,8 +72,9 @@ const services = [
 
 export default function Services() {
   return (
-    <Section id="services">
+    <Section id="services" labelledBy="services-heading">
       <SectionHeader
+        headingId="services-heading"
         eyebrow="01 — What I do"
         title={
           <>

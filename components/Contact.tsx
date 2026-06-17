@@ -27,12 +27,16 @@ export default function Contact() {
     'w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-fg placeholder:text-fg-subtle transition-colors focus:border-accent/60 focus:outline-none'
 
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-line py-24 md:py-32">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="scroll-mt-24 border-t border-line py-24 md:py-32"
+    >
       <div className="container-x">
         {/* Closing statement */}
         <Reveal className="mx-auto max-w-3xl text-center">
           <span className="eyebrow justify-center">07 — Let&apos;s build</span>
-          <h2 className="heading-xl mt-6 text-balance">
+          <h2 id="contact-heading" className="heading-xl mt-6 text-balance">
             Have a project worth{' '}
             <span className="italic text-accent">doing right?</span>
           </h2>

@@ -43,6 +43,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 md:pt-4">
       <nav
+        aria-label="Primary"
         className={`container-x relative flex h-14 items-center justify-between rounded-full border px-3 pl-5 transition-all duration-300 md:h-16 md:px-3 md:pl-6 ${
           scrolled
             ? 'border-line bg-surface-2/80 shadow-soft backdrop-blur-xl'

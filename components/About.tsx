@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { Reveal, RevealGroup } from '@/components/ui/Reveal'
 
@@ -44,12 +45,26 @@ const stack = {
 
 export default function About() {
   return (
-    <Section id="about">
+    <Section id="about" labelledBy="about-heading">
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         {/* Bio */}
         <Reveal>
           <span className="eyebrow">04 — About</span>
-          <h2 className="heading-lg mt-6">
+          <div className="mt-6 flex items-center gap-5">
+            <Image
+              src="/mudassar-profile.jpg"
+              alt="Portrait of Mudassar Zafar, Senior React & Next.js engineer"
+              width={72}
+              height={72}
+              sizes="72px"
+              className="h-[72px] w-[72px] shrink-0 rounded-full border border-line object-cover"
+            />
+            <div>
+              <p className="font-serif text-lg font-medium text-fg">Mudassar Zafar</p>
+              <p className="text-sm text-fg-muted">Senior React &amp; Next.js Engineer</p>
+            </div>
+          </div>
+          <h2 id="about-heading" className="heading-lg mt-7">
             Engineering is a craft.
             <br />
             <span className="italic text-accent">I treat it like one.</span>

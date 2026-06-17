@@ -38,8 +38,9 @@ const steps = [
 
 export default function Process() {
   return (
-    <Section id="process">
+    <Section id="process" labelledBy="process-heading">
       <SectionHeader
+        headingId="process-heading"
         eyebrow="03 — How we work"
         title={
           <>

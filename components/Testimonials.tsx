@@ -31,10 +31,11 @@ const commitments = [
 
 export default function Testimonials() {
   return (
-    <Section id="trust">
+    <Section id="trust" labelledBy="trust-heading">
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal>
           <SectionHeader
+            headingId="trust-heading"
             eyebrow="05 — Working together"
             title={
               <>

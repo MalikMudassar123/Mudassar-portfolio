@@ -143,6 +143,41 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Ambient drifting hero patches (slow, organic, opposite paths) ─ */
+@keyframes driftA {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(90px, -30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes driftB {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-96px, 28px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes driftC {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(70px, 34px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 /* ── Headline accent — purple gradient on serif-italic words ──────── */
 .text-gradient-accent {
   background-image: linear-gradient(

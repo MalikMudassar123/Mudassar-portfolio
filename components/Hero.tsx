@@ -60,6 +60,49 @@ export default function Hero() {
               'radial-gradient(50% 50% at 50% 50%, rgba(214,64,159,0.11), transparent 75%)',
           }}
         />
+        {/* Drifting light-purple patches — slow, opposite paths */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '5%',
+            top: '18%',
+            width: 320,
+            height: 320,
+            borderRadius: '9999px',
+            background: '#a78bfa',
+            opacity: 0.55,
+            filter: 'blur(80px)',
+            animation: 'driftA 18s ease-in-out infinite',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            right: '5%',
+            top: '10%',
+            width: 360,
+            height: 360,
+            borderRadius: '9999px',
+            background: '#b794f6',
+            opacity: 0.5,
+            filter: 'blur(85px)',
+            animation: 'driftB 22s ease-in-out infinite',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: '38%',
+            top: '48%',
+            width: 300,
+            height: 300,
+            borderRadius: '9999px',
+            background: '#c4b5fd',
+            opacity: 0.5,
+            filter: 'blur(80px)',
+            animation: 'driftC 26s ease-in-out infinite',
+          }}
+        />
         {/* Fine grain for matte editorial depth */}
         <div
           className="absolute inset-0 opacity-[0.04] mix-blend-multiply"

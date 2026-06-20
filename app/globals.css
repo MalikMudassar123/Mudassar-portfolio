@@ -143,6 +143,21 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Headline accent — purple gradient on serif-italic words ──────── */
+.text-gradient-accent {
+  background-image: linear-gradient(
+    115deg,
+    #6e56cf 0%,
+    #8b6cf0 40%,
+    #b14fc4 72%,
+    #d6409f 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* ── Custom scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 10px;

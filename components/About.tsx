@@ -10,7 +10,7 @@ const experience = [
     region: 'Germany',
     role: 'Full Stack Developer',
     period: 'Apr 2024 — Present',
-    note: 'Real-time, performance-focused React apps; drag-and-drop resource tools; APIs with Nest.js, Node & MongoDB.',
+    note: 'Real-time, performance-focused React apps; interactive dashboards and internal tools; APIs with Nest.js, Node & MongoDB.',
   },
   {
     company: 'Tech9et',

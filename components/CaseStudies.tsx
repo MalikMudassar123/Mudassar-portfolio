@@ -83,11 +83,6 @@ const more = [
     stack: ['React', 'Node.js', 'MongoDB'],
   },
   {
-    title: 'Resource Planner',
-    desc: 'Drag-and-drop tool for allocating human and project resources across concurrent projects.',
-    stack: ['React', 'Nest.js', 'Context API'],
-  },
-  {
     title: 'HRMS — HR Management System',
     desc: 'Full-stack employee platform with JWT auth, dashboards, CRUD, and role-based access control.',
     stack: ['React', 'Node.js', 'JWT'],
